@@ -1,0 +1,6 @@
+[1227/182436.079:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1227/182436.103:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\suraj\AppData\Local\BraveSoftware\Brave-Browser\User Data\Crashpad\attachments\d0130ff3-27af-4824-9145-f3df8222c3b2: The system cannot find the path specified. (0x3)
+[1227/182436.106:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\suraj\AppData\Local\BraveSoftware\Brave-Browser\User Data\Crashpad\attachments\b8e9b2a4-a95b-45e4-b249-65211ca5f3a9: The system cannot find the path specified. (0x3)
+[1227/182436.108:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\suraj\AppData\Local\BraveSoftware\Brave-Browser\User Data\Crashpad\attachments\8d4d7857-4c48-4e83-b9b6-a53a43a613f0: The system cannot find the path specified. (0x3)
+[1227/182436.111:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\suraj\AppData\Local\BraveSoftware\Brave-Browser\User Data\Crashpad\attachments\c8428775-249c-4f0a-8a9d-ccb74561118e: The system cannot find the path specified. (0x3)
+[1227/182436.113:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\suraj\AppData\Local\BraveSoftware\Brave-Browser\User Data\Crashpad\attachments\aedd1c05-ce5c-4edd-8d16-7cebdccdbfaa: The system cannot find the path specified. (0x3)
