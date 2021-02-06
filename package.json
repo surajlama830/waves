@@ -20,6 +20,8 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-formidable": "^1.0.0",
+    "form-data": "^3.0.0",
+    "fs-extra": "^9.1.0",
     "jsonwebtoken": "^8.3.0",
     "moment": "^2.22.2",
     "mongoose": "^5.1.6",

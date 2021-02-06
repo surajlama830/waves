@@ -127,7 +127,7 @@ class AddProduct extends Component {
                 },
                 validation:{
                     required:true
-                },
+                }, 
                 valid:false,
                 touched:false,
                 validationMessage:'',
@@ -250,8 +250,16 @@ class AddProduct extends Component {
             this.updateFields(newFormData);
         });
     }
-    imagesHandler = ()=>{
-
+    imageHandler(images){
+        console.log(images)
+        const newFormData = {
+            ...this.state.formdata
+        }
+        newFormData['images'].value = images;
+        newFormData['images'].valid= true;
+        this.setState({
+            formdata:newFormData 
+        })
     }
     render() {
         return (
@@ -260,7 +268,7 @@ class AddProduct extends Component {
                     <h1>Add product</h1>
                     <form onSubmit={event=>this.submitForm(event)}>
                         <FIleUpload
-                            imageHandler={(images)=>this.imageHandler(images)}
+                            imageHandler={(im)=>this.imageHandler(im)}
                             reset = {this.state.formSuccess}
                         />
                         

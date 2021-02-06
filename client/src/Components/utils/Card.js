@@ -4,10 +4,10 @@ import Button from './Button';
 class Card extends Component {
     renderCardImage =(images)=>{
         if(images.length > 0){
-            return images[0].url
+            return images[0].filename
         }
         else{
-            return '/images/image_not_availble.png'
+            return '/image_not_availble.png'
         }
     }
     render() {
@@ -17,7 +17,7 @@ class Card extends Component {
                 <div 
                     className="image"
                     style={{
-                        background:`url(${this.renderCardImage(props.images)}) no-repeat`
+                        background:`url(${process.env.PUBLIC_URL}/uploads/${this.renderCardImage(props.images)}) no-repeat`
                     }}
                 >
 

@@ -24,6 +24,7 @@ const brandRoutes = require('./routes/product/brand');
 const woodRoutes = require('./routes/product/wood');
 const productRoutes = require('./routes/product/product');
 
+app.use(express.static('client/public/uploads'));
 // CORS
 // app.use((req, res, next) => {
 //     res.header('Access-Control-Allow-Origin', '*');
@@ -38,7 +39,7 @@ const productRoutes = require('./routes/product/product');
 //        Products
 // ============================
 app.use('/api/product', productRoutes)
-// ============================
+// ============================ 
 //        Woods
 // ============================
 app.use('/api/product', woodRoutes)
