@@ -8,7 +8,8 @@ import Auth from './HOC/Auth';
 import Layout from './HOC/Layout';
 import Shop from './Components/Shop';
 import AddProduct from './Components/User/Admin/AddProduct';
-import AddFile from './Components/User/Admin/AddFile';
+
+import ManageCategories from './Components/User/Admin/ManageCategories';
 
 const  Routes =()=> { 
   
@@ -18,7 +19,7 @@ const  Routes =()=> {
 
             <Route path="/user/dashboard" exact component={Auth(UserDashboard, true)}/>
             <Route path="/admin/add_product" exact component={Auth(AddProduct, true)}/>
-            <Route path="/admin/add_file" exact component={Auth(AddFile, true)}/>
+            <Route path="/admin/manage_categories" exact component={Auth(ManageCategories, true)}/>
 
             <Route path="/register_login" exact component={Auth(RegisterLogin, false)}/>
             <Route path="/register" exact component={Auth(Register, false)}/>
