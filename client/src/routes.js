@@ -10,6 +10,7 @@ import Shop from './Components/Shop';
 import AddProduct from './Components/User/Admin/AddProduct';
 
 import ManageCategories from './Components/User/Admin/ManageCategories';
+import ProductPage from './Components/Product';
 
 const  Routes =()=> { 
   
@@ -23,6 +24,8 @@ const  Routes =()=> {
 
             <Route path="/register_login" exact component={Auth(RegisterLogin, false)}/>
             <Route path="/register" exact component={Auth(Register, false)}/>
+            
+            <Route path="/product_detail/:id" exact component={Auth(ProductPage, null)}/>
             <Route path="/" exact component={Auth(Home,null)}/>
             <Route path="/shop" exact component={Auth(Shop,null)}/>
           </Switch>
