@@ -11,6 +11,7 @@ import AddProduct from './Components/User/Admin/AddProduct';
 
 import ManageCategories from './Components/User/Admin/ManageCategories';
 import ProductPage from './Components/Product';
+import Cart from './Components/User/Cart';
 
 const  Routes =()=> { 
   
@@ -19,6 +20,9 @@ const  Routes =()=> {
           <Switch>
 
             <Route path="/user/dashboard" exact component={Auth(UserDashboard, true)}/>
+
+            <Route path="/user/cart" exact component={Auth(Cart, true)}/>
+
             <Route path="/admin/add_product" exact component={Auth(AddProduct, true)}/>
             <Route path="/admin/manage_categories" exact component={Auth(ManageCategories, true)}/>
 

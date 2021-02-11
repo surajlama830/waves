@@ -4,9 +4,12 @@ import {
     LOGIN_USER,
     REGISTER_USER,
     AUTH_USER,
-    LOGOUT_USER
+    LOGOUT_USER,
+    ADD_TO_CART_USER,
+    GET_CART_ITEMS,
+    REMOVE_CART_ITEM_USER
 } from './types';
-import { USER_SERVER } from '../../Components/utils/misc';
+import { USER_SERVER,PRODUCT_SERVER } from '../../Components/utils/misc';
 
 export function registerUser(dataToSubmit){
     const request = axios.post(`${USER_SERVER}/register`, dataToSubmit)
@@ -40,6 +43,51 @@ export function logoutUser(){
         
     return {
         type:LOGOUT_USER,
+        payload:request
+    }
+}
+
+export function addToCart(_id){
+    const request = axios.post(`${USER_SERVER}/addToCart?productId=${_id}` )
+                    .then(res=> res.data)
+    return{
+        type:ADD_TO_CART_USER,
+        payload:request
+    }
+}
+
+export function getCartItems(cartItems, userCart){
+    const request = axios.get(`${PRODUCT_SERVER}/articles_by_id?id=${cartItems}&type=array`)
+                    .then(res=>{
+                        userCart.forEach(item=>{
+                            res.data.forEach((k,i)=>{
+                                if(item.id === k._id){
+                                    res.data[i].quantity = item.quantity;
+                                }
+                            })
+                        })
+                        return res.data
+                    })
+    return{
+        type:GET_CART_ITEMS,
+        payload:request
+    }
+}
+
+export function removeFromCart(id){
+    const request = axios.get(`${USER_SERVER}/removeFromCart?_id=${id}`)
+                    .then(res=>{
+                        res.data.cart.forEach(item=>{
+                            res.data.cartDetail.forEach((k,i)=>{
+                                if(item.id === k._id){
+                                    res.data.cartDetail[i].quantity = item.quantity;
+                                }
+                            })  
+                        })
+                        return res.data;
+                    })
+    return{
+        type:REMOVE_CART_ITEM_USER,
         payload:request
     }
 }

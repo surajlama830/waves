@@ -7,17 +7,32 @@ import PageTop from '../utils/PageTop';
 import { CircularProgress } from '@material-ui/core';
 import ProductNfo from './ProductNfo';
 import ProdImg from './ProdImg';
+import { faTemperatureHigh } from '@fortawesome/free-solid-svg-icons';
+import { addToCart } from '../../store/actions/user_action';
 
 class ProductPage extends Component {
+    state={
+        dataFound:faTemperatureHigh
+    }
     componentDidMount(){
         const id= this.props.match.params.id;
         
-        this.props.dispatch(getProductDetail(id));
+        this.props.dispatch(getProductDetail(id))
+        .then(res=>{
+            if(!this.props.products.prodDetail){
+                this.setState({
+                    dataFound:false
+                })
+            }
+        });
         
     }
     componentWillUnmount(){
         this.props.dispatch(clearProductDetail());
 
+    }
+    addToCartHandler=(id)=>{
+        this.props.dispatch(addToCart(id))
     }
     render() {
         
@@ -47,10 +62,10 @@ class ProductPage extends Component {
                                 </div>
                             </div>
                         :
-                        <CircularProgress 
-                        style={{color:'#00bcd4'}}
-                        thickness={7}
-                         />
+                        (this.state.dataFound ? <CircularProgress 
+                            style={{color:'#00bcd4'}}
+                            thickness={7}
+                             /> : <h3 style={{textAlign:'center'}}>Product Not Found !!!..</h3>)
                     }
                 </div>
             </div>
