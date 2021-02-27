@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import UserLayout from '../../../HOC/UserLayout';
-import { getBrands, getWoods, addProduct, clearProduct } from '../../../store/actions/product_action';
-import FIleUpload from '../../utils/Form/FIleUpload';
+import UserLayout from '../../../../HOC/UserLayout';
+import { clearProduct, getBrands } from '../../../../store/actions/product_action';
+import FIleUpload from '../../../utils/Form/FIleUpload';
 
-import { generateData, isFormValid, update, pupulateOptionFields, resetFileds } from '../../utils/Form/FormAction';
-import FormField from '../../utils/Form/FormField';
+import { generateData, isFormValid, update, pupulateOptionFields, resetFileds } from '../../../utils/Form/FormAction';
+import FormField from '../../../utils/Form/FormField';
+import { addGuitarStrap } from './../../../../store/actions/accessories_action/strap_action';
 
-class AddProduct extends Component {
+class AddGuitarStrap extends Component {
     state={
         formError:false,
         formSuccess:false,
@@ -117,43 +118,6 @@ class AddProduct extends Component {
                 validationMessage:'',
                 showlabel:true
             },
-            wood:{
-                element:'select',
-                value:'',
-                config:{
-                    label:'Wood material',
-                    name:'wood_input',
-                    options:[  ]
-                },
-                validation:{
-                    required:true
-                }, 
-                valid:false,
-                touched:false,
-                validationMessage:'',
-                showlabel:true
-            },
-            frets:{
-                element:'select',
-                value:'',
-                config:{
-                    label:'Frets material',
-                    name:'frets_input',
-                    options:[
-                        { key:21, value:21},
-                        { key:22, value:22},
-                        { key:23, value:23},
-                        { key:24, value:24}
-                    ]
-                },
-                validation:{
-                    required:true
-                },
-                valid:false,
-                touched:false,
-                validationMessage:'',
-                showlabel:true
-            },
             publish:{
                 element:'select',
                 value:'',
@@ -191,7 +155,7 @@ class AddProduct extends Component {
         })
     }
     updateForm = (element)=>{
-        const newFormData = update(element, this.state.formdata, 'products');
+        const newFormData = update(element, this.state.formdata, 'accessories');
         this.setState({
             formError:false,
             formdata:newFormData
@@ -215,13 +179,13 @@ class AddProduct extends Component {
     submitForm = (event)=>{
         event.preventDefault();
         
-        let dataToSubmit = generateData(this.state.formdata, 'products');
+        let dataToSubmit = generateData(this.state.formdata, 'accessories');
 
-        let formIsValid = isFormValid(this.state.formdata, 'products');
+        let formIsValid = isFormValid(this.state.formdata, 'accessories');
         if(formIsValid){
-            this.props.dispatch(addProduct(dataToSubmit))
+            this.props.dispatch(addGuitarStrap(dataToSubmit))
             .then(()=>{
-                if(this.props.products.addProduct.success){
+                if(this.props.accessories.addGuitarStrap.success){
                     this.resetFieldHandler();
                 }else{
                     this.setState({
@@ -243,10 +207,6 @@ class AddProduct extends Component {
             const newFormData = pupulateOptionFields(formdata, this.props.products.brands, 'brand' );
             this.updateFields(newFormData);
         });
-        this.props.dispatch(getWoods()).then(response=>{
-            const newFormData = pupulateOptionFields(formdata, this.props.products.woods, 'wood' );
-            this.updateFields(newFormData);
-        });
     }
     imageHandler(images){
         const newFormData = {
@@ -262,7 +222,7 @@ class AddProduct extends Component {
         return (
             <UserLayout>
                 <div>
-                    <h1>Add Guitar</h1>
+                    <h1>Add Accessories/Guitar Strap</h1>
                     <form onSubmit={event=>this.submitForm(event)}>
                         <FIleUpload
                             imageHandler={(im)=>this.imageHandler(im)}
@@ -302,17 +262,6 @@ class AddProduct extends Component {
                         />
                         <div className="form_devider"></div>
                         <FormField
-                            id={'wood'}
-                            formdata={this.state.formdata.wood}
-                            change={(element)=>this.updateForm(element)}
-                        />
-                        <FormField
-                            id={'frets'}
-                            formdata={this.state.formdata.frets}
-                            change={(element)=>this.updateForm(element)}
-                        />
-                        <div className="form_devider"></div>
-                        <FormField
                             id={'publish'}
                             formdata={this.state.formdata.publish}
                             change={(element)=>this.updateForm(element)}
@@ -333,13 +282,13 @@ class AddProduct extends Component {
                     </form>
                 </div>
             </UserLayout>
-            
         );
     }
 }
-const mapStateToProps = state=>{
-    return{
-        products:state.products
+const mapStateToProps = state =>{
+    return {
+        products:state.products,
+        accessories:state.accessories
     }
 }
-export default connect(mapStateToProps)(AddProduct);
+export default connect(mapStateToProps)(AddGuitarStrap);

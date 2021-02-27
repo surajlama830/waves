@@ -15,7 +15,7 @@ let storage = multer.diskStorage({
         cb(null, './client/public/uploads')
     },
     filename:(req,file, cb)=>{
-        cb(null, `${Date.now()}_${file.originalname}`)
+        cb(null, `${Date.now()}_${file.originalname.replace(/\s/g, '')}`)
     }
 })
 const fileFilter = (req, file, cb) => {
@@ -23,7 +23,7 @@ const fileFilter = (req, file, cb) => {
         cb(null, true)
     }
     else {
-        cb(res.staus(400).end('Only jpg, png is allowed'), false)
+        cb(()=>res.staus(400).json({message:'Only jpg, png is allowed'}), false)
     }
 }
 

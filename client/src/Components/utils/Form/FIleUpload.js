@@ -17,6 +17,7 @@ class FIleUpload extends Component {
         }
     }
     onDrop=(file)=>{
+        console.log(file)
         this.setState({
             uploading:true
         },()=>{
@@ -37,10 +38,8 @@ class FIleUpload extends Component {
                             res.data.file
                         ]
                     })
+                    this.props.imageHandler(this.state.uploadedFiles);
                 }
-            })
-            .then(()=>{
-                this.props.imageHandler(this.state.uploadedFiles);
             })
         });
     }

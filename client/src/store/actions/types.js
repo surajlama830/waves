@@ -25,3 +25,14 @@ export const CLEAR_PRODUCT = 'clear_product';
 export const GET_PRODUCT_DETAIL = 'get_product_detail';
 export const CLEAR_PRODUCT_DETAIL = 'clear_product_detail';
 
+
+// accessories
+
+export const ADD_GUITAR_BAG = 'add_guitar_bag';
+export const ADD_GUITAR_CABLE = 'add_guitar_cable';
+export const ADD_GUITAR_CAPO = 'add_guitar_capo';
+export const ADD_GUITAR_PICK = 'add_guitar_pick';
+export const ADD_GUITAR_STAND = 'add_guitar_stand';
+export const ADD_GUITAR_STRAP = 'add_guitar_strap';
+export const ADD_GUITAR_STRING = 'add_guitar_string';
+export const ADD_GUITAR_TUNER = 'add_guitar_tuner';

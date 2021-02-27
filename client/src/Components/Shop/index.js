@@ -88,7 +88,7 @@ class Shop extends Component {
         this.setState({
             grid:!this.state.grid ? 'grid_bars':''
         })
-        console.log('grid')
+        // console.log('grid')
     }
     render() {
         const products = this.props.products;

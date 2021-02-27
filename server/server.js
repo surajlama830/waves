@@ -22,9 +22,21 @@ app.use(cookieParser());
 const userRoutes = require('./routes/User/user');
 const brandRoutes = require('./routes/product/brand');
 const woodRoutes = require('./routes/product/wood');
+
 const productRoutes = require('./routes/product/product');
 
-app.use(express.static('client/public/uploads'));
+const spareStringRoutes = require('./routes/product/accessories/spareStrings');
+const guitarTunerRoutes = require('./routes/product/accessories/guitarTuner');
+const guitarCableRoutes = require('./routes/product/accessories/guitarCable');
+const guitarCapoRoutes = require('./routes/product/accessories/guitarCapo');
+const guitarStrapRoutes = require('./routes/product/accessories/guitarStrap');
+const guitarBagRoutes = require('./routes/product/accessories/guitarBags');
+const guitarPicksRoutes = require('./routes/product/accessories/guitarPicks');
+const guitarStandRoutes = require('./routes/product/accessories/guitarStand');
+
+
+
+app.use(express.static('public'));
 // CORS
 // app.use((req, res, next) => {
 //     res.header('Access-Control-Allow-Origin', '*');
@@ -39,6 +51,16 @@ app.use(express.static('client/public/uploads'));
 //        Products
 // ============================
 app.use('/api/product', productRoutes)
+// =============================
+// accessories
+app.use('/api/acessories/strings', spareStringRoutes )
+app.use('/api/acessories/guitarCable', guitarCableRoutes )
+app.use('/api/acessories/guitarCapo', guitarCapoRoutes )
+app.use('/api/acessories/guitarStrap', guitarStrapRoutes )
+app.use('/api/acessories/guitarBag', guitarBagRoutes )
+app.use('/api/acessories/guitarPick', guitarPicksRoutes )
+app.use('/api/acessories/guitarStand', guitarStandRoutes )
+app.use('/api/acessories/guitarTuner', guitarTunerRoutes )
 // ============================ 
 //        Woods
 // ============================

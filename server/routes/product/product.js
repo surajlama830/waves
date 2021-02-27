@@ -15,7 +15,4 @@ router.get('/articles',ProductController.getByOrder )
 router.post('/shop', ProductController.getShop )
 
 
-
-
-
 module.exports = router 
