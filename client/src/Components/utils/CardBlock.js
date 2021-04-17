@@ -9,6 +9,7 @@ const CardBlock = (props) => {
                 
                 <Card 
                     key={i}
+                    grid="col-sm-6 col-lg-3"
                     {...card}
                     />
             ))

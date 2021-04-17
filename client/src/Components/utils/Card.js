@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Button from "./Button";
 import { connect } from "react-redux";
 import { addToCart } from "../../store/actions/user_action";
+import { Link } from 'react-router-dom';
 
 class Card extends Component {
   renderCardImage = (images) => {
@@ -14,7 +15,7 @@ class Card extends Component {
   render() {
     const props = this.props;
     return (
-      <div className={`col-lg-3 ${props.grid}`}>
+      <div className={`mb-4 ${props.grid}`}>
         <div className="card_item_wrapper">
           <div
             className="image"
@@ -27,7 +28,14 @@ class Card extends Component {
 
           <div className="action_container">
             <div className="tags">
-              <div className="name product__name">{props.name}</div>
+              <div className="name">
+                  <Link 
+                    to={`/product_detail/${props._id}/${props.typeName}`}
+                    className="product__name"
+                >
+                  {props.name}
+                </Link>
+              </div>
               <div className="brand brand__name">{props.brand && props.brand.name}</div>
               <div className="name price__name">Rs. {props.price}</div>
             </div>
@@ -39,18 +47,6 @@ class Card extends Component {
             ) : null}
 
             <div className="actions">
-              <div className="button_wrapp">
-                <Button
-                  type="default"
-                  altClass="card_link"
-                  title="View Product"
-                  linkTo={`/product_detail/${props._id}/${props.typeName}`}
-                  // typeName={props.typeName}
-                  addStyle={{
-                    margin: "10px 0 0 0",
-                  }}
-                />
-              </div>
               <div className="button_wrapp">
                 <Button
                   type="bag_link"
