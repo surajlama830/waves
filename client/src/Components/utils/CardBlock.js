@@ -26,10 +26,7 @@ const CardBlock = (props) => {
                     </div>
                     :null
                 }
-                <div style={{
-                    display:'flex',
-                    flexWrap:'wrap'
-                }}>
+                <div className="row">
                     {renderCards(props.list)}
                 </div>
             </div>

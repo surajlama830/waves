@@ -6,6 +6,7 @@ const CardBlockShop = (props) => {
         props.list ? 
             props.list.map(card=>(
                 <Card 
+                    typeName={props.typeName}
                     key={card._id}
                     {...card}
                     grid={props.grid}

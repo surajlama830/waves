@@ -30,34 +30,34 @@ const admin = [
         name:'Add bag',
         linkTo:'/admin/accessories_add_bag'
     },
-    {
-        name:'Add cable',
-        linkTo:'/admin/accessories_add_cable'
-    },
-    {
-        name:'Add capo',
-        linkTo:'/admin/accessories_add_capo'
-    },
-    {
-        name:'Add picks',
-        linkTo:'/admin/accessories_add_picks'
-    },
-    {
-        name:'Add stand',
-        linkTo:'/admin/accessories_add_stand'
-    },
-    {
-        name:'Add strap',
-        linkTo:'/admin/accessories_add_strap'
-    },
-    {
-        name:'Add string',
-        linkTo:'/admin/accessories_add_string'
-    },
-    {
-        name:'Add tuner',
-        linkTo:'/admin/accessories_add_tuner'
-    },
+    // {
+    //     name:'Add cable',
+    //     linkTo:'/admin/accessories_add_cable'
+    // },
+    // {
+    //     name:'Add capo',
+    //     linkTo:'/admin/accessories_add_capo'
+    // },
+    // {
+    //     name:'Add picks',
+    //     linkTo:'/admin/accessories_add_picks'
+    // },
+    // {
+    //     name:'Add stand',
+    //     linkTo:'/admin/accessories_add_stand'
+    // },
+    // {
+    //     name:'Add strap',
+    //     linkTo:'/admin/accessories_add_strap'
+    // },
+    // {
+    //     name:'Add string',
+    //     linkTo:'/admin/accessories_add_string'
+    // },
+    // {
+    //     name:'Add tuner',
+    //     linkTo:'/admin/accessories_add_tuner'
+    // },
     {
         name:'Manage categories',
         linkTo:'/admin/manage_categories'

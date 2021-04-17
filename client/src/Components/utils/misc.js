@@ -2,6 +2,7 @@
 
 export const USER_SERVER = '/api/users';
 export const PRODUCT_SERVER = '/api/product';
+export const SITE_SERVER = '/api/site';
 
 export const GUITAR_BAG_SERVER = '/api/acessories/guitarBag';
 export const GUITAR_CABLE_SERVER = '/api/acessories/guitarCable';

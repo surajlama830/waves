@@ -17,6 +17,11 @@ class Header extends Component {
                 linkTo:'/shop',
                 public:true
             },
+            {
+                name:'Accessories',
+                linkTo:'/accessories',
+                public:true
+            },
         ],
         user:[
             {
@@ -60,6 +65,7 @@ class Header extends Component {
     )
     cartLink =(item, i)=>{
         const user = this.props.user.userData
+        console.log(user.cart)
         return(
             <div className="cart_link" key={i}>
                 <span>{user.cart ? user.cart.length : 0} </span>
@@ -110,10 +116,11 @@ class Header extends Component {
                     </div>
                     <div className="right">
                         <div className="top">
-                            {this.showLinks(this.state.user)}
+                            
                         </div>
                         <div className="bottom">
                             {this.showLinks(this.state.page)}
+                            {this.showLinks(this.state.user)}
                         </div>
                     </div>
                 </div>

@@ -27,9 +27,10 @@ const productSchema = mongoose.Schema({
         required:true,
         type:Boolean
     },
-    available:{
+    stock:{
         required:true,
-        type:Boolean
+        type:Number,
+        maxLength:100
     },
     wood:{
         type:Schema.Types.ObjectId,

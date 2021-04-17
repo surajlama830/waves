@@ -33,7 +33,7 @@ export function clearProductDetail(){
     //                 .then(res=>{
     //                     return res.data[0]
     //                 })
-    return {
+    return { 
         type:CLEAR_PRODUCT_DETAIL,
         payload:''
     }

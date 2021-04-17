@@ -49,3 +49,38 @@ export const frets = [
         "array":[200000, 999999999]
     },
 ]
+
+export const accessories = [
+    {
+        "_id":"GuitarBag",
+        "name":"Guitar Bags"
+    },
+    // {
+    //     "_id":"GuitarCable",
+    //     "name":"Guitar Cables"
+    // },
+    // {
+    //     "_id":"GuitarCapo",
+    //     "name":"Guitar Capos"
+    // },
+    // {
+    //     "_id":"GuitarPick",
+    //     "name":"Guitar Picks"
+    // },
+    // {
+    //     "_id":"GuitarStand",
+    //     "name":"Guitar Stands"
+    // },
+    // {
+    //     "_id":"GuitarStrap",
+    //     "name":"Guitar Straps"
+    // },
+    // {
+    //     "_id":"SpareString",
+    //     "name":"Spare String"
+    // },
+    // {
+    //     "_id":"GuitarTuner",
+    //     "name":"Guitar Tuners"
+    // }
+]

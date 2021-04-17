@@ -22,7 +22,7 @@ app.use(cookieParser());
 const userRoutes = require('./routes/User/user');
 const brandRoutes = require('./routes/product/brand');
 const woodRoutes = require('./routes/product/wood');
-
+const siteRoutes = require('./routes/site');
 const productRoutes = require('./routes/product/product');
 
 const spareStringRoutes = require('./routes/product/accessories/spareStrings');
@@ -77,6 +77,7 @@ app.use('/api/product', brandRoutes);
 // ============================
 app.use('/api/users', userRoutes);
 
+app.use('/api/site', siteRoutes);
 
 const port = process.env.PORT || 3002;
 

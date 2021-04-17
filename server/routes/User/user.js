@@ -71,6 +71,7 @@ router.get('/remove_image', auth, admin , (req,res)=>{
 });
 
 router.post('/register',userController.resigterUser);
+router.post('/update_profile', auth, userController.updateProfile);
 
 router.get('/auth', auth, userController.userAuthentication);
 

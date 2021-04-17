@@ -2,11 +2,13 @@ import { combineReducers } from 'redux';
 import { user } from './user_reducer';
 import { products } from './product_reducer';
 import { accessories } from './accessorie_reducer';
+import { site } from './site_reducer';
 
 const rootReducer = combineReducers({
     user,
     products,
-    accessories
+    accessories,
+    site
 });
 
 export default rootReducer;

@@ -20,6 +20,9 @@ import AddGuitarStand from './Components/User/Admin/AddAccessories/AddGuitarStan
 import AddGuitarTuner from './Components/User/Admin/AddAccessories/AddGuitarTuner';
 import AddGuitarStrap from './Components/User/Admin/AddAccessories/AddGuitarStrap';
 import AddGuitarPicks from './Components/User/Admin/AddAccessories/AddGuitarPicks';
+import Accessories from './Components/Accessories';
+import UpdateProfile from './Components/User/UpdateProfile';
+import ManageSite from './Components/User/Admin/ManageSite';
 
 const  Routes =()=> { 
   
@@ -30,8 +33,10 @@ const  Routes =()=> {
             <Route path="/user/dashboard" exact component={Auth(UserDashboard, true)}/>
 
             <Route path="/user/cart" exact component={Auth(Cart, true)}/>
+            <Route path="/user/user_profile" exact component={Auth(UpdateProfile , true)}/>
 
             <Route path="/admin/add_product" exact component={Auth(AddProduct, true)}/>
+            <Route path="/admin/site_info" exact component={Auth(ManageSite, true)}/>
 
             <Route path="/admin/accessories_add_bag" exact component={Auth(AddGuitarBag, true)}/>
             <Route path="/admin/accessories_add_cable" exact component={Auth(AddGuitarCable, true)}/>
@@ -47,9 +52,10 @@ const  Routes =()=> {
             <Route path="/register_login" exact component={Auth(RegisterLogin, false)}/>
             <Route path="/register" exact component={Auth(Register, false)}/>
             
-            <Route path="/product_detail/:id" exact component={Auth(ProductPage, null)}/>
+            <Route path="/product_detail/:id/:type" exact component={Auth(ProductPage, null)}/>
             <Route path="/" exact component={Auth(Home,null)}/>
             <Route path="/shop" exact component={Auth(Shop,null)}/>
+            <Route path="/accessories" exact component={Auth(Accessories,null)}/>
           </Switch>
        </Layout>
     );

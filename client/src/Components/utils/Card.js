@@ -15,7 +15,7 @@ class Card extends Component {
     render() {
         const props = this.props;
         return (
-            <div className={`card_item_wrapper ${props.grid}`}>
+            <div className={`card_item_wrapper col-lg-3 ${props.grid}`}>
                 <div 
                     className="image"
                     style={{
@@ -46,7 +46,8 @@ class Card extends Component {
                             type="default"
                             altClass="card_link"
                             title="View Product"
-                            linkTo={`/product_detail/${props._id}`}
+                            linkTo={`/product_detail/${props._id}/${props.typeName}`}
+                            // typeName={props.typeName}
                             addStyle={{
                                 margin:'10px 0 0 0'
                             }}
@@ -57,7 +58,7 @@ class Card extends Component {
                             type="bag_link"
                             runAction={()=>{
                                 props.user.userData.isAuth ?
-                                    this.props.dispatch(addToCart(props._id))
+                                    this.props.dispatch(addToCart(props._id, props.typeName))
                                 : console.log("you need to login")
                             }}
                         />

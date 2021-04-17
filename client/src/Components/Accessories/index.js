@@ -2,15 +2,15 @@ import React, { Component, createRef } from 'react';
 import PageTop from '../utils/PageTop';
 
 import { connect } from 'react-redux';
-import { getProductsToShop, getBrands, getWoods } from '../../store/actions/product_action'; 
-import { frets, price } from '../utils/Form/FixedCategories';
+import { getProductsToShop } from '../../store/actions/product_action'; 
+import { accessories } from '../utils/Form/FixedCategories';
 
-import CollapseCheckbox from '../utils/CollapseCheckbox';
 import CollapseRadio from '../utils/CollapseRadio';
-import LoadMoreCard from './LoadMoreCard';
+import LoadMoreCard from '../Shop/LoadMoreCard';
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faBars, faTh} from '@fortawesome/free-solid-svg-icons';
+import { getGuitarBag } from '../../store/actions/accessories_action/bag_action';
 
 
 class Shop extends Component {
@@ -20,40 +20,18 @@ class Shop extends Component {
         limit:6,
         skip:0,
         filters:{
-            brand:[],
-            frets:[],
-            wood:[],
-            price:[]
+            accessories:[]
         }
     }
     componentDidMount(){
-        this.props.dispatch(getBrands());
-        this.props.dispatch(getWoods());
 
-        this.props.dispatch(getProductsToShop(
-            this.state.skip,
-            this.state.limit,
-            this.state.filters
-        ))
-    }
-    handlePrice =(value)=>{
-        const data = price;
-        let array = [];
-        for(let key in data){
-            if(data[key]._id === parseInt(value,10)){
-                array = data[key].array
-            }
-        }
-        return array;
+
+        this.props.dispatch(getGuitarBag())
     }
     handleFilters = (filters, categories)=>{
         const newFilters = {...this.state.filters}
         newFilters[categories] = filters;
 
-        if(categories === 'price'){
-            let priceValue = this.handlePrice(filters);
-            newFilters[categories] = priceValue
-        }
         this.showFilteredResults(newFilters)
         this.setState({
             filters:newFilters
@@ -70,62 +48,42 @@ class Shop extends Component {
             })
         })
     }
-    loadMoreCards = ()=>{
-        let skip = this.state.skip + this.state.limit;
-        this.props.dispatch(getProductsToShop(
-            skip,
-            this.state.limit,
-            this.state.filters,
-            this.props.products.toShop
-        )).then(()=>{
-            this.setState({
-                skip
-            })
-        })
+    // loadMoreCards = ()=>{
+    //     let skip = this.state.skip + this.state.limit;
+    //     this.props.dispatch(getProductsToShop(
+    //         skip,
+    //         this.state.limit,
+    //         this.state.filters,
+    //         this.props.products.toShop
+    //     )).then(()=>{
+    //         this.setState({
+    //             skip
+    //         })
+    //     })
 
-    }
+    // }
     handleGrid = ()=>{
         this.setState({
             grid:!this.state.grid ? 'grid_bars':''
         })
-        // console.log('grid')
     }
     render() {
-        const products = this.props.products;
 
         return (
             <div >
                 <PageTop
-                    title="Browse Products"
+                    title="Browse Accessories / Parts"
                 />
 
                 <div className="container">
                     <div className="shop_wrapper">
                         <div ref={this.wrapper} className="left">
                             
-                            <CollapseCheckbox 
+                        <CollapseRadio 
                                 initState={true}
-                                title="Brands"
-                                list={products.brands}
-                                handleFilters={(filters)=>this.handleFilters(filters, 'brand')}
-                                />
-                            <CollapseCheckbox 
-                                initState={false}
-                                title="Frets"
-                                list={frets}
-                                handleFilters={(filters)=>this.handleFilters(filters, 'fret')}
-                                />
-                            <CollapseCheckbox 
-                                initState={false}
-                                title="Woods"
-                                list={products.woods}
-                                handleFilters={(filters)=>this.handleFilters(filters, 'wood')}
-                                />
-                            <CollapseRadio 
-                                initState={true}
-                                title="Price"
-                                list={price}
-                                handleFilters={(filters)=>this.handleFilters(filters, 'price')}
+                                title="Accessories"
+                                list={accessories}
+                                handleFilters={(filters)=>this.handleFilters(filters, 'accessories')}
                                 />
 
 
@@ -147,11 +105,11 @@ class Shop extends Component {
                             </div>
                             <div>
                                 <LoadMoreCard
-                                    typeName= {'Guitar'}
+                                    typeName= {'guitarBag'}
                                     grid={this.state.grid}
                                     limit={this.state.limit}
-                                    size={products.toShopSize}
-                                    products = {products.toShop}
+                                    size={this.props.accessories.size}
+                                    products = {this.props.accessories.getGuitarBag}
                                     loadMore = {()=>this.loadMoreCards()}
                                 />
                             </div>
@@ -164,7 +122,7 @@ class Shop extends Component {
 }
 const mapStateToProps = (state)=>{
     return{
-        products:state.products
+        accessories:state.accessories
     }
 }
 export default connect(mapStateToProps)(Shop);

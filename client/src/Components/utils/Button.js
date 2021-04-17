@@ -4,12 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 
 const Button = (props) => {
+
     const buttons =()=>{
         let template='';
         switch(props.type){
             case "default":
                 template=<Link 
                     to={props.linkTo}
+                    params = {{ productType: `${props.typeName}`}}
                     className={!props.altClass ? "link_default" : props.altClass}
                     {...props.addStyles}
                 >

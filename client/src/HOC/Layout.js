@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import Footer from '../Components/Header_Footer/Footer';
 import Header from '../Components/Header_Footer/Header';
 
+import { connect } from 'react-redux';
+import { getSitedData } from './../store/actions/site_action';
 class Layout extends Component {
+    componentDidMount(){
+        if(Object.keys(this.props.site).length === 0){
+            this.props.dispatch(getSitedData())
+        }
+    }
     render() {
         return (
             <div>
@@ -12,10 +19,14 @@ class Layout extends Component {
                         {this.props.children}
                     </div>
 
-                <Footer/>
+                <Footer data={this.props.site} />
             </div>
         );
     }
 }
-
-export default Layout;
+const mapStateToProps = (state)=>{
+    return{
+        site:state.site
+    }
+}
+export default connect(mapStateToProps)(Layout);
