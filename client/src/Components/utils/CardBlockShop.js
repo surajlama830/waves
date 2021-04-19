@@ -9,7 +9,8 @@ const CardBlockShop = (props) => {
                     typeName={props.typeName}
                     key={card._id}
                     {...card}
-                    grid="col-sm-6 col-lg-4"
+                    grid={props.grid}
+                    responsiveColumn="col-md-4"
                 />
             ))
         :null

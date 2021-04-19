@@ -14,8 +14,9 @@ class Card extends Component {
   };
   render() {
     const props = this.props;
+    console.log(props.responsiveColumn)
     return (
-      <div className={`mb-4 col-sm-6 col-lg-3 ${props.grid}`}>
+      <div className={`mb-4 col-sm-6 ${props.responsiveColumn} ${props.grid}`}>
         <div className="card_item_wrapper">
           <div
             className="image"

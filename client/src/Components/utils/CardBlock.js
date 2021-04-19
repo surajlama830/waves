@@ -9,8 +9,8 @@ const CardBlock = (props) => {
                 
                 <Card 
                     key={i}
-                    grid=""
                     {...card}
+                    responsiveColumn="col-md-3"
                     />
             ))
         :null
