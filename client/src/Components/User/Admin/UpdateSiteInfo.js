@@ -154,7 +154,7 @@ class UpdateSiteInfo extends Component {
                     :null
                         }
 						{this.state.formError ? <div className="error_label">Please check your data.</div> : null}
-						<button onClick={(event) => this.submitForm(event)}>Update </button>
+						<button className="btn link_default" onClick={(event) => this.submitForm(event)}>Update </button>
 					</div>
 				</form>
 			</div>

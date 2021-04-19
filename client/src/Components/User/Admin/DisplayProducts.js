@@ -58,11 +58,11 @@ const DisplayProducts = ({ products,editProudcts }) => {
 		<div>
 			<h2 style={{ textAlign: 'center' }}>List of Guitars</h2>
 			<div className="user_product_block">
-				<div className="item "><h4 style={{textAlign:'center'}}>image</h4 ></div>
-				<div className="item "><h4 style={{textAlign:'center'}}>Productame</h4 ></div>
-				<div className="item "><h4 style={{textAlign:'center'}}>In stock</h4 ></div>
-				<div className="item "><h4 style={{textAlign:'center'}}>Price</h4 ></div>
-				<div className="item "><h4 style={{textAlign:'center'}}>Action</h4 ></div>
+				<div className="item "><p className="text-capitalize" style={{textAlign:'center'}}>image</p></div>
+				<div className="item "><p className="text-capitalize" style={{textAlign:'center'}}>Product name</p></div>
+				<div className="item "><p className="text-capitalize" style={{textAlign:'center'}}>In stock</p></div>
+				<div className="item "><p className="text-capitalize" style={{textAlign:'center'}}>Price</p></div>
+				<div className="item "><p className="text-capitalize" style={{textAlign:'center'}}>Action</p></div>
 			</div>
 				{renderItems()}
 		</div>

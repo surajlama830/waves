@@ -15,7 +15,7 @@ class Card extends Component {
   render() {
     const props = this.props;
     return (
-      <div className={`mb-4 ${props.grid}`}>
+      <div className={`mb-4 col-sm-6 col-lg-3 ${props.grid}`}>
         <div className="card_item_wrapper">
           <div
             className="image"
@@ -26,7 +26,7 @@ class Card extends Component {
             }}
           />
 
-          <div className="action_container">
+          <div className="action_container d-flex justify-content-between align-items-end">
             <div className="tags">
               <div className="name">
                   <Link 
@@ -37,16 +37,10 @@ class Card extends Component {
                 </Link>
               </div>
               <div className="brand brand__name">{props.brand && props.brand.name}</div>
-              <div className="name price__name">Rs. {props.price}</div>
+              <div className="name price__name">$ {props.price}</div>
             </div>
 
-            {props.grid ? (
-              <div className="description">
-                <p>{props.description}</p>
-              </div>
-            ) : null}
-
-            <div className="actions">
+             <div className="actions">
               <div className="button_wrapp">
                 <Button
                   type="bag_link"
@@ -60,6 +54,14 @@ class Card extends Component {
                 />
               </div>
             </div>
+
+            {props.grid ? (
+              <div className="description">
+                <p>{props.description}</p>
+              </div>
+            ) : null}
+
+           
           </div>
         </div>
       </div>
