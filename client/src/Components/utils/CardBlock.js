@@ -11,6 +11,7 @@ const CardBlock = (props) => {
                     typeName={props.typeName}
                     key={i}
                     {...card}
+                    responsiveColumn="col-md-3"
                     />
             ))
         :null

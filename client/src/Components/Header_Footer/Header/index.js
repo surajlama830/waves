@@ -68,10 +68,10 @@ class Header extends Component {
         console.log(user.cart)
         return(
             <div className="cart_link" key={i}>
-                <span>{user.cart ? user.cart.length : 0} </span>
                 <Link to={item.linkTo}>
                     {item.name}
                 </Link>
+                <span>{user.cart ? user.cart.length : 0} </span>
             </div>
         )
     }

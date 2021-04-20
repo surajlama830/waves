@@ -10,6 +10,7 @@ const CardBlockShop = (props) => {
                     key={card._id}
                     {...card}
                     grid={props.grid}
+                    responsiveColumn="col-md-4"
                 />
             ))
         :null
@@ -17,7 +18,7 @@ const CardBlockShop = (props) => {
     return (
         <div className="card_block_shop">
             <div>
-                <div>
+                <div className="row">
                     {props.list ? 
                         props.list.length === 0 ?
                             <div className="no_results">
