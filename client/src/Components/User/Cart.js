@@ -3,9 +3,15 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import UserLayout from '../../HOC/UserLayout';
-import { getCartItems, removeFromCart } from '../../store/actions/user_action';
+import { getCartItems, onSuccessBuy, removeFromCart } from '../../store/actions/user_action';
 import ProductBLock from '../utils/User/ProductBLock';
 import { faFrown, faSmile } from '@fortawesome/free-solid-svg-icons';
+import Payment from './Payment';
+
+import axios from "axios";
+
+import { USER_SERVER } from './../utils/misc';
+
 
 class Cart extends Component {
 	state = {
@@ -68,6 +74,24 @@ class Cart extends Component {
 			</div>
 		);
 	}
+	transactionSuccess(data){
+		// {
+		// 	cartDetail: this.props.user.cartDetail,
+		// 	paymentData:data
+		// }
+		this.props.dispatch(onSuccessBuy(this.props.user.cartDetail, data)).then(()=>{
+			if(this.props.user.successBuy){
+
+				this.setState({
+					showTotal:false,
+					showSuccess:true
+				})
+
+				axios.post(`${USER_SERVER}/sendmail`, this.props.user.userData.history)
+				.then(res=>console.log(res))
+			}
+		})
+	}
 	render() {
 		return (
 			<UserLayout>
@@ -97,7 +121,14 @@ class Cart extends Component {
 							this.showNoItemMessage()
 						)}
 					</div>
-					{this.state.showTotal ? <div className="paypal_button_container">Paypal</div> : null}
+					{this.state.showTotal ? 
+					// <div className="paypal_button_container">Paypal</div> 
+					<Payment
+						products={this.props.user.cartDetail}
+						price={this.state.total && this.state.total}
+						onSuccess={(data)=>this.transactionSuccess(data)}
+					/>
+					: null}
 				</div>
 			</UserLayout>
 		);

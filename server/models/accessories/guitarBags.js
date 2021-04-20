@@ -27,9 +27,10 @@ const accerroriesSchema = mongoose.Schema({
         required:true,
         type:Boolean
     },
-    available:{
+    stock:{
         required:true,
-        type:Boolean
+        type:Number,
+        maxLength:100
     },
     sold:{
         type:Number,

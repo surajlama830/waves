@@ -29,6 +29,7 @@ export default function(ComposedClass, reload, adminRoute= null){
                     }
                     
                 }
+                console.log(user)
 
                 this.setState({
                     loading:false

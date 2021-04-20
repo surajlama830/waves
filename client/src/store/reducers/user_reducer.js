@@ -7,7 +7,8 @@ import {
 	GET_CART_ITEMS,
 	REMOVE_CART_ITEM_USER,
 	UPDATE_DATA_USER,
-	CLEAR_UPDATE_USER_DATA
+	CLEAR_UPDATE_USER_DATA,
+	ON_SUCCESS_BUY_USER
 } from '../actions/types';
 
 export const user = function(state = {}, action) {
@@ -49,6 +50,15 @@ export const user = function(state = {}, action) {
 			return { ...state, updateUser: action.payload };
         case CLEAR_UPDATE_USER_DATA:
             return {...state, updateUser:action.payload};
+
+		case ON_SUCCESS_BUY_USER:
+			return {...state, successBuy: action.payload.success,
+				userData:{
+					...state.userData,
+					cart:action.payload.cart
+				},
+				cartDetail:action.payload.cartDetail
+			}
 		default:
 			return state;
 	}
