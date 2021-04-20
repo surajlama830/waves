@@ -99,25 +99,23 @@ class AddGuitarBag extends Component {
                 validationMessage:'',
                 showlabel:true
             },
-            available:{
-                element:'select',
-                value:'',
-                config:{
-                    label:'Available in Stock',
-                    name:'available_input',
-                    options:[
-                        { key:true, value:'Yes'},
-                        { key:false, value:'No'},
-                    ]
-                },
-                validation:{
-                    required:true
-                },
-                valid:false,
-                touched:false,
-                validationMessage:'',
-                showlabel:true
-            },
+            stock: {
+				element: 'input',
+				value: '',
+				config: {
+					label: 'Stock quantity',
+					name: 'stock_input',
+					type: 'number',
+					placeholder: 'Enter quantity of stock'
+				},
+				validation: {
+					required: true
+				},
+				valid: false,
+				touched: false,
+				validationMessage: '',
+				showlabel: true
+			},
             publish:{
                 element:'select',
                 value:'',
@@ -256,8 +254,8 @@ class AddGuitarBag extends Component {
                             change={(element)=>this.updateForm(element)}
                         />
                         <FormField
-                            id={'available'}
-                            formdata={this.state.formdata.available}
+                            id={'stock'}
+                            formdata={this.state.formdata.stock}
                             change={(element)=>this.updateForm(element)}
                         />
                         <div className="form_devider"></div>

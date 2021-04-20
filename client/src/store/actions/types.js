@@ -30,6 +30,8 @@ export const CLEAR_PRODUCT_DETAIL = 'clear_product_detail';
 export const GET_SITE_DATA = 'get_site_data';
 export const UPDATE_SITE_DATA = 'update_site_data';
 
+export const ON_SUCCESS_BUY_USER = "on_success_buy_user";
+
 
 // accessories
 

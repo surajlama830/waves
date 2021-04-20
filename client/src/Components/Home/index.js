@@ -23,6 +23,7 @@ class Home extends Component {
                 />
                 <HomePromotion/>
                 <CardBlock 
+                    typeName= {'Guitar'}
                     list={this.props.products.byArrival}
                     title="Best Selling Guitars"
                 />

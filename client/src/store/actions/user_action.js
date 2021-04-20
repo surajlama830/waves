@@ -9,7 +9,8 @@ import {
 	GET_CART_ITEMS,
 	REMOVE_CART_ITEM_USER,
 	UPDATE_DATA_USER,
-	CLEAR_UPDATE_USER_DATA
+	CLEAR_UPDATE_USER_DATA,
+	ON_SUCCESS_BUY_USER
 } from './types';
 import { USER_SERVER, PRODUCT_SERVER, GUITAR_BAG_SERVER } from '../../Components/utils/misc';
 
@@ -143,3 +144,36 @@ export function clearUpdateUser(){
 		payload:""
 	}
 }
+
+export function onSuccessBuy(cartDetails,dataPayment){
+	let data={
+		cartDetail:cartDetails,
+		paymentData:dataPayment
+	}
+	// let Usercarts = []
+	// let cartsss = []
+    // for (let key in cartDetails) {
+    //     Usercarts.push(cartDetails[key]);
+    // }
+	// Usercarts.forEach((item)=>{
+	// 	item.Cart.forEach((cartItems=>{
+	// 		cartsss.push(cartItems)
+	// 	}))
+	// })
+
+	// console.log("usercarts",Usercarts)
+	// console.log("usercarts",cartsss)
+	const request = axios.post(`${USER_SERVER}/successBuy`, data)
+					.then(response=> response.data)
+	return{
+		type:ON_SUCCESS_BUY_USER,
+		payload:request
+	}
+}
+// export function sendMail(history){
+// 	const request = axios.post(`${USER_SERVER}/sendmail`, this.props.user.userData.history)
+// 	.then(res=>console.log(res))
+// 	return {
+// 		type:
+// 	}
+// }
