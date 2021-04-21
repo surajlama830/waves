@@ -6,7 +6,7 @@
   --body-color: #fafafa;
   --text-primary: var(--primary-color);
   --card-hover-color: #9a9a9a;
-};
+}
 
 .page_container {
   min-height: 75vh;
@@ -114,11 +114,10 @@ tr:nth-child(even) {
 ==============================*/
 
 input {
-  
   display: block;
   width: 100%;
-  padding: .375rem .75rem;
-  font-size: .9rem;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
@@ -128,10 +127,11 @@ input {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border-radius: .25rem;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-  box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 1px 2px 0 rgb(0 0 0 / 5%) !important;
-  border-radius: .375rem !important;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000,
+    0 1px 2px 0 rgb(0 0 0 / 5%) !important;
+  border-radius: 0.375rem !important;
   --tw-border-opacity: 1;
   border-color: rgba(209, 213, 219, var(--tw-border-opacity)) !important;
 }
@@ -219,7 +219,7 @@ select {
   margin-top: 10px;
   color: #fff;
   border-radius: 6px;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-size: 14px;
 }
 
@@ -302,6 +302,7 @@ header a:hover {
 
 header .container {
   display: flex;
+  align-items: center;
 }
 
 header .container .left {
@@ -505,7 +506,7 @@ footer .business_nfo .nfo {
   cursor: pointer;
 }
 
-.card_item_wrapper:hover .action_container{
+.card_item_wrapper:hover .action_container {
   background: var(--card-hover-color);
 }
 
@@ -1042,6 +1043,39 @@ footer .business_nfo .nfo {
     height: 50px;
     overflow: hidden;
   }
-
 }
 
+.responsive__menu {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  background: var(--primary-color);
+  width: 200px;
+  height: 100vh;
+  padding-top: 40px;
+  transition: all 0.5s ease;
+}
+
+.responsive__menu a {
+  display: block;
+  color: #fff;
+  padding: 13px 0;
+}
+
+.hamburger__menu {
+  text-align: right;
+  margin-right: 12px;
+  transition: all 0.5s ease;
+}
+
+.hamburger__menu svg {
+  color: #fff;
+}
+
+.left__0 {
+  left: 0;
+}
+
+.left__100p {
+  left: 100%;
+}
