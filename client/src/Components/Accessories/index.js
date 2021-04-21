@@ -26,7 +26,14 @@ class Shop extends Component {
     componentDidMount(){
 
 
-        this.props.dispatch(getGuitarBag())
+        this.props.dispatch(getGuitarBag(
+            this.state.skip,
+            this.state.limit
+            )).then(res=>{
+            // console.log("accessories",res.payload)
+        })
+        console.log("guitarBags", this.props.accessories.getGuitarBag)
+
     }
     handleFilters = (filters, categories)=>{
         const newFilters = {...this.state.filters}
@@ -48,20 +55,19 @@ class Shop extends Component {
             })
         })
     }
-    // loadMoreCards = ()=>{
-    //     let skip = this.state.skip + this.state.limit;
-    //     this.props.dispatch(getProductsToShop(
-    //         skip,
-    //         this.state.limit,
-    //         this.state.filters,
-    //         this.props.products.toShop
-    //     )).then(()=>{
-    //         this.setState({
-    //             skip
-    //         })
-    //     })
+    loadMoreCards = ()=>{
+        let skip = this.state.skip + this.state.limit;
+        this.props.dispatch(getGuitarBag(
+            skip,
+            this.state.limit,
+            this.props.accessories.getGuitarBag
+        )).then(()=>{
+            this.setState({
+                skip
+            })
+        })
 
-    // }
+    }
     handleGrid = ()=>{
         this.setState({
             grid:!this.state.grid ? 'grid_bars':''
@@ -76,8 +82,8 @@ class Shop extends Component {
                 />
 
                 <div className="container">
-                    <div className="shop_wrapper">
-                        <div ref={this.wrapper} className="left">
+                    <div className="shop_wrapper row">
+                        <div ref={this.wrapper} className="left col-lg-3">
                             
                         <CollapseRadio 
                                 initState={true}
@@ -88,7 +94,7 @@ class Shop extends Component {
 
 
                         </div>
-                        <div className="right">
+                        <div className="right col-lg-9">
                             <div className="shop_options">
                                 <div className="shop_grids clear">
                                     <div className={`grid_btn ${this.state.grid ? '': 'active'}`}

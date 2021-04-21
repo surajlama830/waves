@@ -16,6 +16,25 @@ exports.addProduct = (req, res)=>{
         })
     })
 }
+exports.updateProduct=(req,res)=>{
+    // console.log(req.body)
+    Product.findOneAndUpdate(
+        {_id:req.body.id},
+        {$set:req.body.dataToSubmit},
+        {new:true},
+        (err,doc)=>{
+            if(err) return res.json({
+                success:false,
+                err
+            });
+    
+            res.status(200).json({
+                success:true,
+                article:doc
+            })
+        }
+    )
+}
 
 exports.getProducts = (req, res)=>{
     let type = req.query.type;

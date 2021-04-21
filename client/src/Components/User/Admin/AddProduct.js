@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import UserLayout from '../../../HOC/UserLayout';
-import { getBrands, getWoods, addProduct, clearProduct } from '../../../store/actions/product_action';
+import { getBrands, getWoods, addProduct, clearProduct, updateProductData } from '../../../store/actions/product_action';
 import FIleUpload from '../../utils/Form/FIleUpload';
 
 import { generateData, isFormValid, update, pupulateOptionFields, resetFileds } from '../../utils/Form/FormAction';
 import FormField from '../../utils/Form/FormField';
 import DisplayProducts from './DisplayProducts';
-import { getProductsToShop } from './../../../store/actions/product_action';
+import { getProductsToShop, getProductDetail } from './../../../store/actions/product_action';
+import { populateFields } from './../../utils/Form/FormAction';
 
 class AddProduct extends Component {
 	state = {
@@ -213,20 +214,37 @@ class AddProduct extends Component {
 	}
 	submitForm = (event) => {
 		event.preventDefault();
-
+		const Id = this.props.match.params.id;
 		let dataToSubmit = generateData(this.state.formdata, 'products');
 
 		let formIsValid = isFormValid(this.state.formdata, 'products');
 		if (formIsValid) {
-			this.props.dispatch(addProduct(dataToSubmit)).then(() => {
-				if (this.props.products.addProduct.success) {
-					this.resetFieldHandler();
-				} else {
-					this.setState({
-						formError: true
-					});
-				}
-			});
+			if(Id){
+				this.props.dispatch(updateProductData(dataToSubmit,Id))
+				.then(res=>{
+					console.log(res.payload.success)
+					if(res.payload.success){
+						this.setState({
+							formSuccess:true
+						},()=>{
+							setTimeout(()=>{
+								this.props.history.push('/admin/add_product')
+							},2000)
+						})
+					}
+				})
+			}
+			else{
+				this.props.dispatch(addProduct(dataToSubmit)).then(() => {
+					if (this.props.products.addProduct.success) {
+						this.resetFieldHandler();
+					} else {
+						this.setState({
+							formError: true
+						});
+					}
+				});
+			}
 		} else {
 			this.setState({
 				formError: true
@@ -247,6 +265,17 @@ class AddProduct extends Component {
 
 		// call for products
 		this.props.dispatch(getProductsToShop(this.state.skip, this.state.limit));
+		// console.log(this.props.match.params.id)
+		const Id = this.props.match.params.id;
+		if (Id) {
+			this.props.dispatch(getProductDetail(Id)).then((res) => {
+				console.log('response', res.payload);
+				const newFormData = populateFields(this.state.formdata, res.payload);
+				this.setState({
+					formdata: newFormData
+				});
+			});
+		}
 	}
 	imageHandler(images) {
 		const newFormData = {
@@ -259,14 +288,24 @@ class AddProduct extends Component {
 		});
 	}
 	editProudcts = (id) => {
-		console.log(id);
+		this.props.history.push(`/admin/add_product/${id}`);
+	};
+	loadMore = () => {
+		let skip = this.state.skip + this.state.limit;
+		this.props
+			.dispatch(getProductsToShop(skip, this.state.limit, this.state.filters, this.props.products.toShop))
+			.then(() => {
+				this.setState({
+					skip
+				});
+			});
 	};
 	render() {
 		const products = this.props.products;
 		return (
 			<UserLayout>
 				<div>
-					<h1>Add Guitar</h1>
+					<h1>{this.props.match.params.id ? 'Update Product' : 'Add product'}</h1>
 					<form onSubmit={(event) => this.submitForm(event)}>
 						<FIleUpload imageHandler={(im) => this.imageHandler(im)} reset={this.state.formSuccess} />
 						<div className="row">
@@ -343,15 +382,30 @@ class AddProduct extends Component {
 						/>
 						{this.state.formSuccess ? <div className="form_success">Success..</div> : null}
 						{this.state.formError ? <div className="error_label">Please check your data.</div> : null}
-						<button className="btn link_default" onClick={(event) => this.submitForm(event)}>Add product</button>
+						<button className="btn link_default" onClick={(event) => this.submitForm(event)}>
+							{this.props.match.params.id ? 'Update Product' : 'Add product'}
+						</button>
 					</form>
 					<div className="form_devider" />
-					<DisplayProducts
-						editProudcts={(id) => this.editProudcts(id)}
-						grid={this.state.grid}
-						limit={this.state.limit}
-						products={products.toShop}
-					/>
+
+					{/* load more cards */}
+					{this.props.match.params.id ? null : (
+						<div>
+							<DisplayProducts
+								productType="guitar"
+								title="Guitars"
+								editProudcts={(id) => this.editProudcts(id)}
+								grid={this.state.grid}
+								limit={this.state.limit}
+								products={products.toShop}
+							/>
+							{products.toShopSize > 0 && products.toShopSize >= this.state.limit ? (
+								<div className="load_more_container">
+									<span onClick={() => this.loadMore()}>Load More</span>
+								</div>
+							) : null}
+						</div>
+					)}
 				</div>
 			</UserLayout>
 		);

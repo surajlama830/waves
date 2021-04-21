@@ -6,12 +6,17 @@ import FIleUpload from '../../../utils/Form/FIleUpload';
 
 import { generateData, isFormValid, update, pupulateOptionFields, resetFileds } from '../../../utils/Form/FormAction';
 import FormField from '../../../utils/Form/FormField';
-import { addGuitarBag } from './../../../../store/actions/accessories_action/bag_action';
+import { addGuitarBag, getGuitarBag, getGuitarDetail,updateGuitarBagData } from './../../../../store/actions/accessories_action/bag_action';
+
+import DisplayProducts from '../DisplayProducts';
+import { populateFields } from './../../../utils/Form/FormAction';
 
 class AddGuitarBag extends Component {
 	state = {
 		formError: false,
 		formSuccess: false,
+		limit: 6,
+		skip: 0,
 		formdata: {
 			name: {
 				element: 'input',
@@ -173,20 +178,38 @@ class AddGuitarBag extends Component {
 	}
 	submitForm = (event) => {
 		event.preventDefault();
-
+		const Id = this.props.match.params.id;
 		let dataToSubmit = generateData(this.state.formdata, 'accessories');
 
 		let formIsValid = isFormValid(this.state.formdata, 'accessories');
 		if (formIsValid) {
-			this.props.dispatch(addGuitarBag(dataToSubmit)).then(() => {
-				if (this.props.accessories.addGuitarBag.success) {
-					this.resetFieldHandler();
-				} else {
-					this.setState({
-						formError: true
-					});
-				}
-			});
+			if(Id){
+				this.props.dispatch(updateGuitarBagData(dataToSubmit, Id))
+				.then(res=>{
+					console.log(res.payload.success)
+					if(res.payload.success){
+						this.setState({
+							formSuccess:true
+						},()=>{
+							setTimeout(()=>{
+								this.props.history.push('/admin/accessories_add_bag')
+							},2000)
+						})
+					}
+				})
+			}
+			else{
+
+				this.props.dispatch(addGuitarBag(dataToSubmit)).then(() => {
+					if (this.props.accessories.addGuitarBag.success) {
+						this.resetFieldHandler();
+					} else {
+						this.setState({
+							formError: true
+						});
+					}
+				});
+			}
 		} else {
 			this.setState({
 				formError: true
@@ -200,6 +223,18 @@ class AddGuitarBag extends Component {
 			const newFormData = pupulateOptionFields(formdata, this.props.products.brands, 'brand');
 			this.updateFields(newFormData);
 		});
+		this.props.dispatch(getGuitarBag(this.state.skip, this.state.limit));
+
+		const Id = this.props.match.params.id;
+		if(Id){
+			this.props.dispatch(getGuitarDetail(Id)).then(res=>{
+				console.log("response",res.payload)
+				const newFormData = populateFields(this.state.formdata, res.payload)
+				this.setState({
+					formdata: newFormData
+				})
+			})
+		}
 	}
 	imageHandler(images) {
 		const newFormData = {
@@ -211,11 +246,23 @@ class AddGuitarBag extends Component {
 			formdata: newFormData
 		});
 	}
+	editProudcts = (id) => {
+		this.props.history.push(`/admin/accessories_add_bag/${id}`);
+	};
+	loadMore = () => {
+		let skip = this.state.skip + this.state.limit;
+		this.props.dispatch(getGuitarBag(skip, this.state.limit, this.props.accessories.getGuitarBag)).then(() => {
+			this.setState({
+				skip
+			});
+		});
+	};
 	render() {
+		const accessories = this.props.accessories;
 		return (
 			<UserLayout>
 				<div>
-					<h1>Add Accessories/Guitar Bag</h1>
+					<h1>{this.props.match.params.id ? 'Update Accessories' : 'Add Accessories'}</h1>
 					<form onSubmit={(event) => this.submitForm(event)}>
 						<FIleUpload imageHandler={(im) => this.imageHandler(im)} reset={this.state.formSuccess} />
 						<div className="row">
@@ -274,8 +321,28 @@ class AddGuitarBag extends Component {
 						/>
 						{this.state.formSuccess ? <div className="form_success">Success..</div> : null}
 						{this.state.formError ? <div className="error_label">Please check your data.</div> : null}
-						<button className="btn link_default" onClick={(event) => this.submitForm(event)}>Add product</button>
+						<button className="btn link_default" onClick={(event) => this.submitForm(event)}>
+						{this.props.match.params.id ? 'Update Product' : 'Add product'}
+						</button>
 					</form>
+					<div className="form_devider" />
+					{this.props.match.params.id ? null : (
+						<div>
+							<DisplayProducts
+								productType="guitarBag"
+								title="Guitars Accessories"
+								editProudcts={(id) => this.editProudcts(id)}
+								grid={this.state.grid}
+								limit={this.state.limit}
+								products={accessories.getGuitarBag}
+							/>
+							{accessories.size > 0 && accessories.size >= this.state.limit ? (
+								<div className="load_more_container">
+									<span onClick={() => this.loadMore()}>Load More</span>
+								</div>
+							) : null}
+						</div>
+					)}
 				</div>
 			</UserLayout>
 		);

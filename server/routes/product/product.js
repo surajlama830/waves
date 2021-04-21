@@ -13,6 +13,7 @@ router.get('/articles',ProductController.getByOrder )
 
 
 router.post('/shop', ProductController.getShop )
+router.post('/product_data', auth,admin, ProductController.updateProduct)
 
 
 module.exports = router 

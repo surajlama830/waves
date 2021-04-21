@@ -18,6 +18,7 @@ class Home extends Component {
             <div>
                 <HomeSlider/>
                 <CardBlock 
+                    typeName= {'Guitar'}
                     list={this.props.products.bySell}
                     title="Best Selling Guitars"
                 />

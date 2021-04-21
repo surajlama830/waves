@@ -94,6 +94,12 @@ export const resetFileds = (formdata, formName)=>{
 export const populateFields =(formData, fields)=>{
     for(let key in formData){
         formData[key].value = fields[key];
+        if(key === "brand"){
+            formData[key].value = fields[key]._id
+        }
+        if(key === "wood"){
+            formData[key].value = fields[key]._id
+        }
         formData[key].valid = true;
         formData[key].touched = true;
         formData[key].validationMessage = '';

@@ -21,6 +21,8 @@ export const GET_WOODS = 'get_woods';
 export const ADD_WOOD = 'add_wood';
 
 export const ADD_PRODUCT = 'add_product';
+export const UPDATE_PRODUCT_DATA='update_product_data';
+
 export const CLEAR_PRODUCT = 'clear_product';
 
 export const GET_PRODUCT_DETAIL = 'get_product_detail';
@@ -36,6 +38,7 @@ export const ON_SUCCESS_BUY_USER = "on_success_buy_user";
 // accessories
 
 export const ADD_GUITAR_BAG = 'add_guitar_bag';
+export const UPDATE_GUITAR_BAG_DATA = 'update_guitar_bag_data';
 export const GET_GUITAR_BAG = 'get_guitar_bag';
 export const GET_GUITAR_BAG_DETAIL = 'get_guitar_bag_detail';
 

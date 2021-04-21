@@ -10,6 +10,7 @@ import {
     CLEAR_PRODUCT,
     GET_PRODUCT_DETAIL,
     CLEAR_PRODUCT_DETAIL,
+    UPDATE_PRODUCT_DATA,
     
  } from "../actions/types";
 
@@ -44,6 +45,8 @@ export const products = function(state={}, action){
                     toShopSize: action.payload.size
             }
         case ADD_PRODUCT:
+            return {...state, addProduct: action.payload}
+        case UPDATE_PRODUCT_DATA:
             return {...state, addProduct: action.payload}
         case CLEAR_PRODUCT:
             return {...state, addProduct: action.payload}

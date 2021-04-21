@@ -8,6 +8,7 @@ class Layout extends Component {
     componentDidMount(){
         if(Object.keys(this.props.site).length === 0){
             this.props.dispatch(getSitedData())
+            .then(res=>console.log(res))
         }
     }
     render() {

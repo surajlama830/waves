@@ -150,19 +150,7 @@ export function onSuccessBuy(cartDetails,dataPayment){
 		cartDetail:cartDetails,
 		paymentData:dataPayment
 	}
-	// let Usercarts = []
-	// let cartsss = []
-    // for (let key in cartDetails) {
-    //     Usercarts.push(cartDetails[key]);
-    // }
-	// Usercarts.forEach((item)=>{
-	// 	item.Cart.forEach((cartItems=>{
-	// 		cartsss.push(cartItems)
-	// 	}))
-	// })
 
-	// console.log("usercarts",Usercarts)
-	// console.log("usercarts",cartsss)
 	const request = axios.post(`${USER_SERVER}/successBuy`, data)
 					.then(response=> response.data)
 	return{
@@ -170,10 +158,3 @@ export function onSuccessBuy(cartDetails,dataPayment){
 		payload:request
 	}
 }
-// export function sendMail(history){
-// 	const request = axios.post(`${USER_SERVER}/sendmail`, this.props.user.userData.history)
-// 	.then(res=>console.log(res))
-// 	return {
-// 		type:
-// 	}
-// }

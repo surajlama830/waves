@@ -8,15 +8,18 @@ import{
     ADD_GUITAR_STRING,
     ADD_GUITAR_TUNER,
     GET_GUITAR_BAG,
-    GET_GUITAR_BAG_DETAIL
+    GET_GUITAR_BAG_DETAIL,
+    UPDATE_GUITAR_BAG_DATA
 } from '../actions/types';
 
 export const accessories = function(state={}, action){
     switch(action.type){
         case ADD_GUITAR_BAG:
             return {...state, addGuitarBag:action.payload}
+        case UPDATE_GUITAR_BAG_DATA:
+            return{...state, addGuitarBag:action.payload}
         case GET_GUITAR_BAG:
-            return {...state, getGuitarBag:action.payload, size:action.payload.size}    
+            return {...state, getGuitarBag:action.payload.docs, size:action.payload.size}    
         case GET_GUITAR_BAG_DETAIL:
             return {...state, prodDetail:action.payload}  
 

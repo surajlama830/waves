@@ -11,7 +11,8 @@ import {
     ADD_PRODUCT,
     CLEAR_PRODUCT,
     GET_PRODUCT_DETAIL,
-    CLEAR_PRODUCT_DETAIL
+    CLEAR_PRODUCT_DETAIL,
+    UPDATE_PRODUCT_DATA
 
 } from './types';
 
@@ -159,6 +160,15 @@ export function addWood(dataToSubmit, existingWoods){
                     });
     return {
         type:ADD_WOOD,
+        payload:request
+    }
+}
+
+export function updateProductData(dataToSubmit, id){
+    const request=axios.post(`${PRODUCT_SERVER}/product_data`, {dataToSubmit,id})
+                    .then(res=>res.data)
+    return{
+        type:UPDATE_PRODUCT_DATA,
         payload:request
     }
 }

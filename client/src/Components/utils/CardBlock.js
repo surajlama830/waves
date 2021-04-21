@@ -9,7 +9,7 @@ const CardBlock = (props) => {
                 
                 <Card 
                     typeName={props.typeName}
-                    key={i}
+                    key={card._id}
                     {...card}
                     responsiveColumn="col-md-3"
                     />

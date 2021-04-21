@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCompass, faPhone, faClock, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const Footer = ({ data }) => {
+	console.log(data)
 	return data.siteData ? (
 		<footer className="bck_b_dark">
 			<div className="container">

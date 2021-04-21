@@ -115,7 +115,7 @@ class UpdateSiteInfo extends Component {
 	};
 	componentDidMount(){
 		this.props.dispatch(getSitedData()).then(()=>{
-			console.log(this.props.site.siteData)
+			// console.log(this.props.site.siteData)
 			const newFormData = populateFields(this.state.formdata, this.props.site.siteData[0])
 			this.setState({
 				formdata:newFormData

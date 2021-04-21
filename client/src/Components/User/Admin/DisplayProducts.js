@@ -1,8 +1,10 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faPen, faEye } from '@fortawesome/free-solid-svg-icons';
+import { withRouter } from 'react-router-dom';
 
-const DisplayProducts = ({ products,editProudcts }) => {
+const DisplayProducts = ({productType, products,editProudcts, history,title }) => {
+	console.log(products)
 	const renderCardImage = (images) => {
 		if (images.length > 0) {
 			return images[0].filename;
@@ -10,6 +12,14 @@ const DisplayProducts = ({ products,editProudcts }) => {
 			return 'image_not_availble.png';
 		}
 	};
+	const viewProduct =(id)=>{
+		if(productType==='guitar'){
+			history.push(`/product_detail/${id}/Guitar`)
+		}
+		else if(productType==='guitarBag'){
+			history.push(`/product_detail/${id}/guitarBag`)
+		}
+	}
 	const renderItems = () => {
 		const items = products
 			? products.map((product) => (
@@ -39,9 +49,17 @@ const DisplayProducts = ({ products,editProudcts }) => {
                         <FontAwesomeIcon
                                     icon={ faPen  }
                                     className="icon"
+									color='green'
                                     onClick= {()=>editProudcts(product._id)}
                                 />
                                 &nbsp; &nbsp; &nbsp;
+                        <FontAwesomeIcon
+                                    icon={ faEye }
+                                    className="icon"
+                                    color='blue'
+									onClick={()=>viewProduct(product._id)}
+                                />
+								&nbsp; &nbsp; &nbsp;
                         <FontAwesomeIcon
                                     icon={ faTrash }
                                     className="icon"
@@ -56,7 +74,7 @@ const DisplayProducts = ({ products,editProudcts }) => {
 	};
 	return (
 		<div>
-			<h2 style={{ textAlign: 'center' }}>List of Guitars</h2>
+			<h2 style={{ textAlign: 'center' }}>List of {title}</h2>
 			<div className="user_product_block">
 				<div className="item "><p className="text-capitalize" style={{textAlign:'center'}}>image</p></div>
 				<div className="item "><p className="text-capitalize" style={{textAlign:'center'}}>Product name</p></div>
@@ -69,4 +87,4 @@ const DisplayProducts = ({ products,editProudcts }) => {
 	);
 };
 
-export default DisplayProducts;
+export default withRouter(DisplayProducts);

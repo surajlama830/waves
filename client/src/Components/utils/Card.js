@@ -30,63 +30,63 @@ class Card extends Component {
 		const props = this.props;
 		// console.log(props)
 		return (
-			<div className={`card_item_wrapper col-lg-3 ${props.grid}`}>
-				<div
-					className="image"
-					style={{
-						background: `url(${process.env.PUBLIC_URL}/uploads/${this.renderCardImage(
-							props.images
-						)}) no-repeat`
-					}}
-				/>
-				<div className="action_container d-flex justify-content-between align-items-end">
-					<div className="tags">
-						<div className="name">
-							<Link to={`/product_detail/${props._id}/${props.typeName}`} className="product__name">
-								{props.name}
-							</Link>
+			<div className={`mb-4 ${props.grid ? 'col-12' : `col-sm-6 ${props.responsiveColumn}`}`}>
+				<div className={`card_item_wrapper ${props.grid && 'd-flex'}`}>
+					<div
+						className={`image ${props.grid && 'flex__1'}`}
+						style={{
+							background: `url(${process.env.PUBLIC_URL}/uploads/${this.renderCardImage(
+								props.images
+							)}) no-repeat`
+						}}
+					/>
+					<div
+						className={`action_container ${props.grid
+							? 'flex__2'
+							: 'd-flex justify-content-between align-items-end'}`}
+					>
+						<div className="tags">
+							<div className="name">
+								<Link to={`/product_detail/${props._id}/${props.typeName}`} className="product__name">
+									{props.name}
+								</Link>
+							</div>
+							<div className="brand brand__name">{props.brand && props.brand.name}</div>
+
+							{props.grid ? (
+								<div className="description">
+									<p>{props.description}</p>
+								</div>
+							) : null}
+
+							<div className="name price__name">$ {props.price}</div>
 						</div>
-						<div className="brand brand__name">{props.brand && props.brand.name}</div>
-						<div className="name price__name">$ {props.price}</div>
+
+						<div className="actions justify-content-between align-items-center">
+							{props.grid ? 
+							<div className="brand__name">
+								Available : {props.stock > 0 ? "Yes": "No"}
+							</div>
+							:null}
+							<div className="button_wrapp">
+								<Button
+									type="bag_link"
+									runAction={() => {
+										props.user.userData.isAuth
+											? this.props.dispatch(addToCart(props._id, props.typeName))
+											: this.redirectToRegister();
+									}}
+								/>
+							</div>
+						</div>
+
+						<Dialog open={this.state.openDialog}>
+							<div className="dialog_alert">
+								<div>You are not logged in</div>
+								<div>You will be redirected to the LOGIN in a couple seconds....</div>
+							</div>
+						</Dialog>
 					</div>
-
-					<div className="actions">
-						{/* <div className="button_wrapp">
-							<Button
-								type="default"
-								altClass="card_link"
-								title="View Product"
-								linkTo={`/product_detail/${props._id}/${props.typeName}`}
-								// typeName={props.typeName}
-								addStyle={{
-									margin: '10px 0 0 0'
-								}}
-							/>
-						</div> */}
-						<div className="button_wrapp">
-							<Button
-								type="bag_link"
-								runAction={() => {
-									props.user.userData.isAuth
-										? this.props.dispatch(addToCart(props._id, props.typeName))
-										: this.redirectToRegister();
-								}}
-							/>
-						</div>
-					</div>
-
-					{props.grid ? (
-						<div className="description">
-							<p>{props.description}</p>
-						</div>
-					) : null}
-
-					<Dialog open={this.state.openDialog}>
-						<div className="dialog_alert">
-							<div>You are not logged in</div>
-							<div>You will be redirected to the LOGIN in a couple seconds....</div>
-						</div>
-					</Dialog>
 				</div>
 			</div>
 		);

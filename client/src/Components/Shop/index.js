@@ -100,8 +100,8 @@ class Shop extends Component {
                 />
 
                 <div className="container">
-                    <div className="shop_wrapper">
-                        <div ref={this.wrapper} className="left">
+                    <div className="shop_wrapper row">
+                        <div ref={this.wrapper} className="left col-lg-3">
                             
                             <CollapseCheckbox 
                                 initState={true}
@@ -130,7 +130,7 @@ class Shop extends Component {
 
 
                         </div>
-                        <div className="right">
+                        <div className="right col-lg-9">
                             <div className="shop_options">
                                 <div className="shop_grids clear">
                                     <div className={`grid_btn ${this.state.grid ? '': 'active'}`}
