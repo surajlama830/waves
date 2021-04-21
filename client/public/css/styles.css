@@ -810,6 +810,21 @@ footer .business_nfo .nfo {
   min-height: 700px;
 }
 
+/*.user_left_nav {
+  position: relative;
+}
+
+.user_left_nav::after {
+  content: '';
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  right: -31px;
+  top: 0;
+  background: #ddd;
+}
+*/
+
 .user_container .user_left_nav {
   border-right: 1px solid #f8f8f8;
 }
