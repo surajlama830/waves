@@ -83,7 +83,7 @@ class ManageBrarnds extends Component {
     render() {
         return (
             <div className="admin_category_wrapper">
-                <h1>Brands</h1>
+                <h3>Brands</h3>
                 <div className="admin_two_column">
                     <div className="left">
                         <div className="brands_container">

@@ -40,7 +40,7 @@ export function clearProductDetail(){
 }
 
 export function getProductsBySell(){
-    const request = axios.get(`${PRODUCT_SERVER}/articles?sortBy=sold&order=desc&limit=4`)
+    const request = axios.get(`${PRODUCT_SERVER}/articles?sortBy=sold&order=desc&limit=3`)
                     .then(res=>res.data);
     return {
         type:GET_PRODUCTS_BY_SELL,

@@ -76,14 +76,14 @@ const UserLayout = (props) => {
         <div className="container">
             <div className="user_container">
                 <div className="user_left_nav">
-                    <h2>My Account</h2>
+                    <h3>My Account</h3>
                     <div className="links">
                         {generateLinks(links)}
                     </div>
                     {
                         props.user.userData.isAdmin ?
                             <div>
-                                <h2>Admin</h2>
+                                <h3>Admin</h3>
                                 <div className="links">
                                     {generateLinks(admin)}
                                 </div>

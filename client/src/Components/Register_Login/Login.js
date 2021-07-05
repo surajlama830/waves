@@ -83,23 +83,28 @@ class Login extends Component {
         return (
             <div className="signin_wrapper">
                 <form onSubmit={(event)=>this.submitForm(event)}>
-                    
-                    <FormField
-                        id={'email'}
-                        formdata={this.state.formdata.email}
-                        change={(element)=>this.updateForm(element)}
-                    />
-                    <FormField
-                        id={'password'}
-                        formdata={this.state.formdata.password}
-                        change={(element)=>this.updateForm(element)}
-                    />
+                    <div className="row">
+                        <div className="col-md-6">
+                             <FormField
+                                id={'email'}
+                                formdata={this.state.formdata.email}
+                                change={(element)=>this.updateForm(element)}
+                            />
+                        </div>
+                        <div className="col-md-6">
+                            <FormField
+                                id={'password'}
+                                formdata={this.state.formdata.password}
+                                change={(element)=>this.updateForm(element)}
+                            />
+                        </div>
+                    </div>
                     {this.state.formError ?
                         <div className="error_label">
                             Please check your data.
                         </div>
                     :null}
-                    <button onClick={event=>this.submitForm(event)}>
+                    <button className="btn link_default" onClick={event=>this.submitForm(event)}>
                         Log in
                     </button>
                 </form>

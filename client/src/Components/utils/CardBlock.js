@@ -2,7 +2,7 @@ import React from 'react';
 import Card from './Card';
 
 const CardBlock = (props) => {
-
+    console.log(props)
     const renderCards = ()=>(
         props.list?
             props.list.map((card, i)=>(
@@ -10,6 +10,7 @@ const CardBlock = (props) => {
                 <Card 
                     key={i}
                     {...card}
+                    responsiveColumn="col-md-3"
                     />
             ))
         :null
